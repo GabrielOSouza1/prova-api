@@ -1,24 +1,20 @@
 import requests
 
-# URL base da API pública de Warframe para Warframes
+
 BASE_URL = "https://api.warframestat.us/warframes"
 
 def obter_warframes(idioma='pt'):
-    """
-    Obtém a lista de Warframes e suas informações, com suporte a múltiplos idiomas.
-    """
+    
     try:
         response = requests.get(BASE_URL, params={'language': idioma})
-        response.raise_for_status()  # Verifica se a requisição foi bem sucedida
-        return response.json()  # Retorna os dados no formato JSON
+        response.raise_for_status()  
+        return response.json()  
     except requests.exceptions.RequestException as e:
         print(f"Erro ao obter dados: {e}")
         return None
 
 def exibir_warframes(idioma='pt'):
-    """
-    Exibe informações sobre os Warframes, incluindo habilidades e duas características principais.
-    """
+    
     warframes = obter_warframes(idioma)
 
     if warframes:
